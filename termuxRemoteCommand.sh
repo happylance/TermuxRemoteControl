@@ -4,4 +4,4 @@ config_file="$DIR/.config"
 [ -e "$config_file" ] || { echo "Cannot find .config file."; exit 1; }
 source "$config_file"
 
-ssh -p $remote_port $remote_host "termux-tts-speak $@"
+ssh -p $remote_port $remote_host "$1" 

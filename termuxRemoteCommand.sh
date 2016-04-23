@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-config_file="$DIR/.config"
+config_file="$HOME/.termux_remote_config"
 [ -e "$config_file" ] || { echo "Cannot find .config file."; exit 1; }
 source "$config_file"
 

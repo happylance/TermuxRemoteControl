@@ -6,10 +6,9 @@ current_temperature=$(/home/ubuntu/software/ansiweather/ansiweather -a false -s 
 today=$(date '+%a %b %d')
 forecast=$(/home/ubuntu/software/ansiweather/ansiweather -a false -f 2 | tr '>-' '\n' | grep "$today")
 high_low=$(echo "$forecast" | awk '{print $4}')
-high=$(echo "$high_low" | awk -F '/' '{if (length($1) > 0)printf("最高%s度", $1)}')
-low=$(echo "$high_low" | awk -F '/' '{if (length($2) > 0)printf("最低%s度", $2)}')
+low_to_high=$(echo "$high_low" | awk -F '/' '{if (length($2) > 0)printf("%s到%s度", $2, $1)}')
 rainy_info=$(echo "$forecast" | grep -q "☔ " && echo "有雨")
 sunny_info=$(echo "$forecast" | grep -q "☀" && echo "晴")
-weather="$current_temperature, $high, $low, $rainy_info$sunny_info"
+weather="$current_temperature, $low_to_high, $rainy_info$sunny_info"
 time_and_weather="$(date +%H:%M%P), $weather"
 echo "$time_and_weather" | tee /dev/tty | "$DIR/termuxRemoteSay.sh" -l zh_CN

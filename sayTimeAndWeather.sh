@@ -10,5 +10,5 @@ low_to_high=$(echo "$high_low" | awk -F '/' '{if (length($2) > 0)printf("%s度�
 rainy_info=$(echo "$forecast" | grep -q "☔ " && echo "有雨")
 sunny_info=$(echo "$forecast" | grep -q "☀" && echo "晴")
 weather="$current_temperature, $low_to_high, $rainy_info$sunny_info"
-time_and_weather="$(date +%H:%M%P), $weather"
+time_and_weather="$(date +%I:%M%P), $weather"
 echo "$time_and_weather" | tee /dev/tty | "$DIR/termuxRemoteSay.sh" -l zh_CN

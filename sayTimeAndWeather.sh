@@ -3,7 +3,7 @@
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 current_temperature=$(/home/ubuntu/software/ansiweather/ansiweather -a false -s false \
     | awk '{if (length($7) > 0)printf("气温%s度", $7)}')
-today=$(date | awk '{print $1, $2, $3}')
+today=$(date '+%a %b %d')
 forecast=$(/home/ubuntu/software/ansiweather/ansiweather -a false -f 2 | tr '>-' '\n' | grep "$today")
 high_low=$(echo "$forecast" | awk '{print $4}')
 high=$(echo "$high_low" | awk -F '/' '{if (length($1) > 0)printf("最高%s度", $1)}')

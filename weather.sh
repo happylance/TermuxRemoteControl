@@ -9,6 +9,10 @@ symbol_to_text () {
             ;;
         ☁ ) echo "多云"
             ;;
+        ❄) echo "有雪"
+            ;;
+        ⚡) echo "有雷雨"
+            ;;
         *) ;;
     esac
 }
